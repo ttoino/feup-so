@@ -30,7 +30,7 @@ Abra um terminal de shell no seu computador e resolva os seguintes exercícios. 
 Em que diretório se encontra depois de executar cada um dos seguintes comandos?\
 Verifique o seu palpite executando o comando `pwd`.
 
-```bash
+```console
 $ cd ~
 $ cd
 ```
@@ -52,7 +52,7 @@ dir1
 
 A partir do diretório inicial, em que diretório estaria após executar os comandos que se seguem?
 
-```bash
+```console
 $ tree dir1
 dir1
 |-- dir2
@@ -85,7 +85,7 @@ dir1
 
 O que imprimem os dois últimos comandos desta sequência?
 
-```bash
+```console
 $ tree dir1
 dir1
 |-- dir2
@@ -106,7 +106,7 @@ $ find dir1/dir3 -name "[fg][35][4-7a-z].txt" -print
 
 Qual a estrutura da subárvore com raíz no diretório `dir1` depois de executado o último comando desta sequência?
 
-```bash
+```console
 $ tree dir1
 dir1
 |-- dir2
@@ -126,7 +126,7 @@ $ rm -rf dir1/dir2
 
 Assuma agora que em `dir3` tem o seguinte cenário. Escreva (em octal) as permissões dos 3 ficheiros, os donos dos ficheiros as suas datas de criação e os seus tamanhos em bytes.
 
-```bash
+```console
 $ ls
 f3a.txt g3x.pdf j52.docx
 $ ls -l
@@ -140,7 +140,7 @@ total 28712
 
 Que permissões têm `user`, `group` e `others` sobre um ficheiro doit depois de executados cada um dos comandos seguintes?
 
-```bash
+```console
 $ chmod 755 doit
 $ chmod u-wx doit
 $ chmod go-rx doit
@@ -151,7 +151,7 @@ $ chmod 644 doit
 
 O que imprimem os últimos dois comandos desta sequência?
 
-```bash
+```console
 $ cat > trees.txt
 pine:253:221:1.2
 oak:144:123:0.9
@@ -167,7 +167,7 @@ $ cat trees.txt | cut -d ’:’ -f 1,4 | sort
 
 Considere o seguinte ficheiro com uma citação escrita numa só linha (sem mudanças de linha). Qual o "output" dos últimos três comandos desta sequência? Explique.
 
-```bash
+```console
 $ cat > q1.txt
 Three Rings for the Elven-kings under the sky,
 Seven for the dwarf-lords in their halls of stone,
@@ -187,7 +187,7 @@ $ wc -l q2.txt
 
 Qual o resultado dos comandos `diff` na seguinte sequência?
 
-```bash
+```console
 $ cat > f1.txt
 I don’t know half of you
 half as well as I should like;
@@ -204,7 +204,7 @@ $ diff f1.txt f2.txt
 
 Qual o output do último comando desta sequência? Explique.
 
-```bash
+```console
 $ cat > numbers1.txt
 66
 43
@@ -228,7 +228,7 @@ $ sort -d < words.txt > words2.txt
 
 O seguinte comando permite conhecer com uma boa aproximação algo sobre os processos atualmente geridos pelo sistema operativo. O quê?
 
-```bash
+```console
 $ ps -A | wc -l
 ```
 
@@ -236,7 +236,7 @@ $ ps -A | wc -l
 
 Qual o resultado da execução do último comando desta sequência?
 
-```bash
+```console
 $ emacs &
 $ emacs &
 $ emacs &

@@ -122,7 +122,7 @@ double   complex_im(complex* z) {
 
 Para executar o exemplo, compilamos primeiro a API e construimos uma biblioteca `libcomplex.a` que será usada pelo programa principal:
 
-```bash
+```console
 $ gcc -Wall -c complex.c
 $ ar -rc libcomplex.a complex.o
 $ ar -t libcomplex.a
@@ -130,7 +130,7 @@ $ ar -t libcomplex.a
 
 e compilamos depois o programa principal `use_complex.c` indicando ao compilador (linker) que deve usar a biblioteca `libcomplex.a` (`-lcomplex`) situada no diretório corrente (`-L.`):
 
-```bash
+```console
 $ gcc -Wall use_complex.c -o use_complex -L. -lcomplex -lm
 ```
 
@@ -140,21 +140,21 @@ Note que também foi incluída a biblioteca matemática `-lm`, necessária para 
 
 Repita o exercício dos números complexos mas agora criando uma biblioteca dinâmica, executando os seguintes comandos:
 
-```bash
+```console
 $ gcc -c -Wall -fPIC -o complex.o complex.c
 $ gcc -shared -o libcomplex.so complex.o
 ```
 
 A opção `-fPIC` indica ao compilador que deve gerar código binário que possa ser colocado em qualquer posição na memória, e.g., as instruções de salto são feitas sempre usando endereços relativos. A opção `-shared` indica ao compilador que a biblioteca resultante vai ser um *shared object*, com extensão `.so`. Depois de criada a biblioteca, esta é usada da mesma forma que uma biblioteca estática:
 
-```bash
+```console
 $ gcc -Wall use_complex.c -o use_complex -L. -lcomplex
 $ ./use_complex
 ```
 
 Dependendo do sistema operativo que estiver a usar poderá ter também de executar o comando:
 
-```bash
+```console
 $ export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
 ```
 

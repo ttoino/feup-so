@@ -15,13 +15,13 @@ int main() {
 
 Veja o que acontece ao código quando corre apenas o pré-processador de C:
 
-```bash
+```console
 $ gcc -E hello.c
 ```
 
 Para inspecionar o código assembly Intel x86 produzido para o programa pode fazer:
 
-```bash
+```console
 $ gcc -S hello.c
 ```
 
@@ -29,7 +29,7 @@ e procure um ficheiro com o nome `hello.s`.
 
 Execute os seguintes comandos e observe o que acontece:
 
-```bash
+```console
 $ gcc hello.c
 $ gcc -o hello hello.c
 $ gcc -Wall -o hello hello.c
@@ -39,7 +39,7 @@ Sempre que compile um programa em C deverá utilizar a opção `-Wall` para que 
 
 Para utilizar um debugger, um programa auxiliar que permite a execução passo a passo do binário executável, indicando a instrução no programa fonte a ser executada, deverá compilar com a opção `-g`. Experimente:
 
-```bash
+```console
 $ gcc -g -o hello hello.c
 $ gdb hello
 gdb> break main
@@ -237,7 +237,7 @@ Compile-os e execute-os. Note que, no caso de `bad_pointer.c` tem de compilar co
 
 Recompile o programa `gcc -g -w -o bad_pointer bad_pointer.c` e corra-o no `gdb`.
 
-```bash
+```console
 $ gdb bad_pointer
 gdb> break main
 gdb> run
