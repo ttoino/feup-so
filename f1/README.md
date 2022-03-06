@@ -173,7 +173,7 @@ int main() {
 }
 ```
 
-e call_by_reference.c:
+e `call_by_reference.c`:
 
 ```c
 void swap(int *p1, int *p2) {
