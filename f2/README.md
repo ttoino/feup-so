@@ -1,10 +1,12 @@
-# Alguns Tópicos de Linguagem C (parte II)
+# Some Topics on the C Language (part II)
 
 ## 1.
 
-Recorde a definição de número complexo *z* ∈ ℂ. Um número complexo *z* tem a forma *a* + *bi*, onde *a*, *b* ∈ ℝ. Os valores *a* e *b* representam, respetivamente, as partes real e imaginária de *z*.
+Recall the definition of the complex number *z* ∈ ℂ as *x* + *yi*, where *x*, *y* ∈ ℝ.
+The values *x* and *y* represent, respectively, the real and imaginary parts of *z*.
 
-O seguinte cabeçalho em C (ficheiro com extensão `.h`) define um novo tipo `complex` que pode ser usado para implementar uma biblioteca de funções que realizam as operações sobre complexos de forma simplificada. A lista completa dos tipos destas funções (a API) é também incluída neste ficheiro (`complex.h`):
+The following C header file (a file with the extension `.h`) defines a new datatype called `complex` that can be used to implement a library of functions that operate on complex numbers.
+The list of such functions and their types (the library’s Application Programmer’s Interface or API) is also provided in this file (`complex.h`):
 
 ```c
 /* definition of new type complex */
@@ -28,7 +30,7 @@ double   complex_re(complex *);
 double   complex_im(complex *);
 ```
 
-Considere ainda o ficheiro `use_complex.c` que faz uso da API acima definida para criar números complexos e manipulá-los.
+Consider also the file `use_complex.c` that makes use of the above API to create complex numbers and to manipulate them.
 
 ```c
 #include <stdio.h>
@@ -63,7 +65,7 @@ int main(int argc, char** argv) {
 }
 ```
 
-Finalmente, o ficheiro `complex.c` contém a implementação da API para os números complexos, i.e., a implementação de todas as funções listadas em `complex.h`:
+Finally, the file `complex.c` provides the implementation of the API, i.e., the implementation of all the functions listed in `complex.h`:
 
 ```c
 #include <stdlib.h>
@@ -120,7 +122,7 @@ double   complex_im(complex* z) {
 }
 ```
 
-Para executar o exemplo, compilamos primeiro a API e construimos uma biblioteca `libcomplex.a` que será usada pelo programa principal:
+To run the example, we first compile the API and build a library as an archive (extension `.a`) as `libcomplex.a` that will be used by the main program:
 
 ```console
 $ gcc -Wall -c complex.c
@@ -128,42 +130,45 @@ $ ar -rc libcomplex.a complex.o
 $ ar -t libcomplex.a
 ```
 
-e compilamos depois o programa principal `use_complex.c` indicando ao compilador (linker) que deve usar a biblioteca `libcomplex.a` (`-lcomplex`) situada no diretório corrente (`-L.`):
+and then we compile the main program `use_complex.c` informing the compiler (actually the linker) that it should use code from the library `libcomplex.a` (`-lcomplex`) located in the current directory (`-L.`):
 
 ```console
 $ gcc -Wall use_complex.c -o use_complex -L. -lcomplex -lm
 ```
 
-Note que também foi incluída a biblioteca matemática `-lm`, necessária para funções como `atan2` e `sqrt`, usadas em `complex.c`.
+Note also that C’s math library was also included `-lm`, as functions in it, such as `atan2` and `sqrt`, are used in the implementation of `complex.c`.
 
 ## 2.
 
-Repita o exercício dos números complexos mas agora criando uma biblioteca dinâmica, executando os seguintes comandos:
+Repeat the above exercise but now building and using a dynamic library, by running
+the following commands:
 
 ```console
 $ gcc -c -Wall -fPIC -o complex.o complex.c
 $ gcc -shared -o libcomplex.so complex.o
 ```
 
-A opção `-fPIC` indica ao compilador que deve gerar código binário que possa ser colocado em qualquer posição na memória, e.g., as instruções de salto são feitas sempre usando endereços relativos. A opção `-shared` indica ao compilador que a biblioteca resultante vai ser um *shared object*, com extensão `.so`. Depois de criada a biblioteca, esta é usada da mesma forma que uma biblioteca estática:
+Option `-fPIC` informs the compiler that it should generate position independent code.
+This is important because the dynamic library will be loaded into memory when the program is already running (hence the dynamic adjective) in addresses that are not known a priori by the compiler.
+Option `-shared` indicates to the compiler that the resulting library should be created as a shared object (extension `.so`), as `libcomplex.so`.
+After being created, the library is used in much the same way as its static version to compile the main program:
 
 ```console
 $ gcc -Wall use_complex.c -o use_complex -L. -lcomplex
 $ ./use_complex
 ```
 
-Dependendo do sistema operativo que estiver a usar poderá ter também de executar o comando:
+Depending on the operating system you are using, you may also need to run the command:
 
 ```console
 $ export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
 ```
 
-Para a biblioteca ser encontrada.
+so that the library may be found by the operating system.
 
 ## 3.
 
-Considere o seguinte ficheiro `vector.h` que contém a definição de um tipo `vector`, representando um vector em R3:
-<!-- TODO -->
+Consider the header file `vector.h` as follows, containing the definition of a type `vector`, that represents a 3D vector ∈ ℝ³:
 
 ```c
 /* definition of new type vector */
@@ -185,7 +190,7 @@ double  vector_sprod(vector*, vector*);
 double  vector_mod(vector*);
 ```
 
-Considere ainda o ficheiro `use_vector.c` que faz uso da API acima definida para criar e manipular vetores.
+As in the previous exercise, consider a file `use_vector.c` that uses the vector API.
 
 ```c
 #include <stdio.h>
@@ -217,11 +222,12 @@ int main(int argc, char** argv) {
 }
 ```
 
-Escreva uma implementação para a API dos vetores num ficheiro `vector.c`, compile-o e construa uma biblioteca. Compile o programa `use_vector.c` com a biblioteca e execute-o.
+Write an implementation for the API in a file `vector.c`, compile it and build a library `libvector.a`.
+Compile the program `use_vector.c` with the library and run it.
 
 ## 4.
 
-Considere o ficheiro `matrix.h` contendo a definição do tipo matriz *N* × *M* de valores em vírgula flutuante.
+Consider the file `matrix.h` that contains the definition of type `matrix`, representing a *N* × *M* matrix of floating point values.
 
 ```c
 /* definition of new type matrix */
@@ -245,7 +251,8 @@ matrix* matrix_mul(matrix *, matrix *);
 matrix* matrix_trans(matrix *);
 ```
 
-Considere ainda o ficheiro `matrix.c` contendo uma implementação parcial da API acima definida. Complete-o.
+Consider the file `matrix.c` that contains a partial implementation for the API.
+Complete it.
 
 ```c
 #include <stdio.h>
@@ -313,11 +320,11 @@ matrix* matrix_trans(matrix* u) {
 }
 ```
 
-Escreva um ficheiro `use_matrix.c` que crie algumas matrizes e as manipule utilizando todas as funções da API.
+Write a file `use_matrix.c` with a `main()` function where you create some matrices and use the API to perform operations on them.
 
 ## 5.
 
-Considere o ficheiro `list.h` contendo a definição do tipo `list`, uma lista ligada de inteiros.
+Consider the file `list.h` that contains a definition of a type `list`, representing a linked list of integers.
 
 ```c
 /* definition of new type list */
@@ -347,7 +354,8 @@ int   list_size(list *);
 void  list_print(list *);
 ```
 
-Considere ainda o ficheiro `list.c` contendo uma implementação parcial da API acima definida. Complete-o.
+Consider the file `list.c` that contains a partial implementation of the aforementioned API.
+Complete it.
 
 ```c
 #include <stdio.h>
@@ -427,11 +435,11 @@ void list_print(list* l) {
 }
 ```
 
-Escreva um ficheiro `use_list.c` que crie uma ou mais listas e as manipule utilizando todas as funções da API.
+Write a file `use_list.c` that creates one or more lists and uses the functions of the API to manipulate them.
 
 ## 6.
 
-O código que se segue apresenta uma implementação alternativa ao exercício **1** para uma biblioteca que opera sobre números complexos (ficheiro `complex.c`):
+The code that follows presents an alternative implementation of exercise **1** for a library that operates on complex numbers (file `complex.c`):
 
 ```c
 #include <stdio.h>
@@ -513,7 +521,7 @@ double complex_im(complex z) {
 }
 ```
 
-A API é usada no seguinte exemplo (ficheiro `use_complex.c`):
+This new API is used in file `use_complex.c`:
 
 ```c
 #include <stdio.h>
@@ -546,4 +554,6 @@ int main(int argc, char** argv) {
 }
 ```
 
-Com base no código aqui apresentado, escreva o ficheiro `complex.h` correspondente, compile a biblioteca e o exemplo, verificando que obtém resultados iguais aos da implementação apresentada no exercício **1**. Olhe atentamente para o código e faça um esquema da utilização da memória (*heap* e *stack*) durante a execução para as duas APIs. Qual a diferença fundamental entre as duas?
+Based on the code here presented, write the corresponding header file `complex.h`, compile the library and main program and check that you get similar results to those of exercise **1**.
+Pay close attention to the code and make a diagram (draw it!) that shows how the memory is used in the heap and stack during the execution of both APIs.
+What is the main different between the two?

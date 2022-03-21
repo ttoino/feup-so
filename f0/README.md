@@ -1,34 +1,37 @@
-# A Shell de Comandos do Unix (Linux)
+# The Unix (Linux) Command Shell
 
-Para a resolução destes exercícios sugere-se que leia e faça os exercícios desta excelente introdução à shell Bash da autoria de Ryan Chadwick. Os comandos (e respetivas opções), operadores e símbolos especiais da shell que deve conhecer e saber como funcionam são:
+To solve the following exercises we suggest that you read (and also try the exercises) of this excellent [introduction to the Bash Shell](https://ryanstutorials.net/linuxtutorial/) by Ryan Chadwick.
+The commands (and corresponding command line options), operators and special symbols that you should be familiar with are the following:
 
-- caminhos absolutos e relativos:
-  - diretórios (`/`, `.` e `..`)
+- absolute and relative paths:
+  - directories (`/`, `.` e `..`)
 
-- símbolos especiais da shell:
+- shell special symbols:
   - globs (`^`, `?`, `*`, `[]`, `{}`)
-  - redirecionamento de I/O (`>`, `>>`, `<`, `|`)
-  - desligar processo da shell (`&`)
+  - I/O redirection (`>`, `>>`, `<`, `|`)
+  - detach process I/O from shell (`&`)
 
-- comandos básicos:
-  - navegação (`pwd`, `cd`, `tree`)
-  - criação/remoção de ficheiros/diretórios (`touch`, `mkdir`, `rmdir`, `rm`, `rm -rf`)
-  - copiar e mover ficheiros/diretórios (`cp`, `cp -a`, `cp -r`, `mv`)
-  - manipulação de ficheiros (`cat`, `more`, `less`, `head`, `tail`, `chmod`, `file`)
-  - gestão de processos (`ps`, `ps -aux`, `ps -u`, `jobs`, `top`, `kill -9`)
-  - pesquisa de ficheiros (`find`, `find -size -name -print`, `ls`, `ls -l`, `ls -lR`)
-  - pesquisa de comandos e manual (`which`, `man`)
-  - informação em ficheiros (`grep`, `grep -v`, `cut`, `cut -d -f`, `sort`)
-  - edição de informação em ficheiros (`sed s/X/Y/g` ou `s/X/Y/n`, n=1,2...)
-  - redirecionamento de input/output e pipes (`<`, `>`, `>>`, `|`)
-  - arquivo (`tar`, `zip`, `gzip`)
+- basic commands:
+  - filesystem navigation (`pwd`, `cd`, `tree`)
+  - creating/removing files/directories (`touch`, `mkdir`, `rmdir`, `rm`, `rm -rf`)
+  - copy/moving files/directories (`cp`, `cp -a`, `cp -r`, `mv`)
+  - file manipulation (`cat`, `more`, `less`, `head`, `tail`, `chmod`, `file`)
+  - process management (`ps`, `ps -aux`, `ps -u`, `jobs`, `top`, `kill -9`)
+  - file searching (`find`, `find -size -name -print`, `ls`, `ls -l`, `ls -lR`)
+  - command searching and manual pages (`which`, `man`)
+  - finding/processing data in files (`grep`, `grep -v`, `cut`, `cut -d -f`, `sort`)
+  - editing files (`sed s/X/Y/g` or `s/X/Y/n`, n=1,2...)
+  - I/O redirection (`<`, `>`, `>>`, `|`)
+  - archiving (`tar`, `zip`, `gzip`)
 
-Abra um terminal de shell no seu computador e resolva os seguintes exercícios. Para cada um deles deve primeiro tentar antever o resultado com base no que sabe sobre a shell Bash e os comandos em causa. Confirme depois o seu palpite executando as sequências apresentadas.
+Open a shell terminal in your computer and solve the following exercises.
+For each exercise you should first try to anticipate the result based on what you know about the Bash commands involved.
+Check your predictions by running the commands and watching the results.
 
 ## 1.
 
-Em que diretório se encontra depois de executar cada um dos seguintes comandos?\
-Verifique o seu palpite executando o comando `pwd`.
+What directory are you in after executing each of the following commands?
+Check your guesses by running the command `pwd`.
 
 ```console
 $ cd ~
@@ -37,7 +40,7 @@ $ cd
 
 ## 2.
 
-Use o comando `mkdir` para criar uma sub-árvore de diretórios com a forma seguinte:
+Use the `mkdir` command to create the following subtree in your current directory:
 
 ```
 dir1
@@ -50,7 +53,7 @@ dir1
 
 ## 3.
 
-A partir do diretório inicial, em que diretório estaria após executar os comandos que se seguem?
+Starting at the current directory, in what directory would you end up after running the following commands?
 
 ```console
 $ tree dir1
@@ -65,7 +68,7 @@ $ cd dir1/dir2/dir4/dir6/../..
 
 ## 4.
 
-Use o comando `touch` para criar ficheiros vazios com os nomes seguintes dentro da subárvore que acabou de criar.
+Use the `touch` command to create empty files with the names as below within the subtree you created.
 
 ```
 dir1
@@ -83,7 +86,7 @@ dir1
 
 ## 5.
 
-O que imprimem os dois últimos comandos desta sequência?
+What is printed by the last two commands in this sequence?
 
 ```console
 $ tree dir1
@@ -104,7 +107,7 @@ $ find dir1/dir3 -name "[fg][35][4-7a-z].txt" -print
 
 ## 6.
 
-Qual a estrutura da subárvore com raíz no diretório `dir1` depois de executado o último comando desta sequência?
+What is the structure of the subtree with root at `dir1` after running the last command in this sequence?
 
 ```console
 $ tree dir1
@@ -124,7 +127,8 @@ $ rm -rf dir1/dir2
 
 ## 7.
 
-Assuma agora que em `dir3` tem o seguinte cenário. Escreva (em octal) as permissões dos 3 ficheiros, os donos dos ficheiros as suas datas de criação e os seus tamanhos em bytes.
+Assume that at directory `dir3` you have the following scenario.
+Write the permissions of the 3 files in octal, indicating the owners of the files, their creation dates and size in bytes.
 
 ```console
 $ ls
@@ -138,7 +142,7 @@ total 28712
 
 ## 8.
 
-Que permissões têm `user`, `group` e `others` sobre um ficheiro doit depois de executados cada um dos comandos seguintes?
+What permissions do `user`, `group` and `others` have over the file `doit` after you execute each of the following commands?
 
 ```console
 $ chmod 755 doit
@@ -149,7 +153,7 @@ $ chmod 644 doit
 
 ## 9.
 
-O que imprimem os últimos dois comandos desta sequência?
+What is printed by the last two commands in this sequence?
 
 ```console
 $ cat > trees.txt
@@ -165,17 +169,19 @@ $ cat trees.txt | cut -d ’:’ -f 1,4 | sort
 
 ## 10.
 
-Considere o seguinte ficheiro com uma citação escrita numa só linha (sem mudanças de linha). Qual o "output" dos últimos três comandos desta sequência? Explique.
+Consider the following file with a quote written in a single line (no newlines).
+What is the output of the final three commands in this sequence?
+Explain why.
 
 ```console
 $ cat > q1.txt
-Three Rings for the Elven-kings under the sky,
-Seven for the dwarf-lords in their halls of stone,
-Nine for Mortal Men doomed to die,
-One for the Dark Lord on his dark throne,
-In the Land of Mordor where the Shadows lie.
-One Ring to rule them all, One Ring to find them,
-One Ring to bring them all and in the darkness bind them
+Three Rings for the Elven-kings under the sky, -->
+Seven for the dwarf-lords in their halls of stone, -->
+Nine for Mortal Men doomed to die, -->
+One for the Dark Lord on his dark throne, -->
+In the Land of Mordor where the Shadows lie. -->
+One Ring to rule them all, One Ring to find them, -->
+One Ring to bring them all and in the darkness bind them -->
 In the Land of Mordor where the Shadows lie.
 ^D
 $ cat q1.txt | sed ’s/Ring/Sword/g’ > q2.txt
@@ -185,7 +191,7 @@ $ wc -l q2.txt
 
 ## 11.
 
-Qual o resultado dos comandos `diff` na seguinte sequência?
+What are the results of the `diff` commands in the sequence below?
 
 ```console
 $ cat > f1.txt
@@ -202,7 +208,8 @@ $ diff f1.txt f2.txt
 
 ## 12.
 
-Qual o output do último comando desta sequência? Explique.
+What is the output of the last two commands in this sequence?
+Explain why.
 
 ```console
 $ cat > numbers1.txt
@@ -226,7 +233,8 @@ $ sort -d < words.txt > words2.txt
 
 ## 13.
 
-O seguinte comando permite conhecer com uma boa aproximação algo sobre os processos atualmente geridos pelo sistema operativo. O quê?
+The following command allows you to calculate, with a good approximation, something about the processes currently being managed by the operating system.
+What?
 
 ```console
 $ ps -A | wc -l
@@ -234,7 +242,8 @@ $ ps -A | wc -l
 
 ## 14.
 
-Qual o resultado da execução do último comando desta sequência?
+What is the result of the last command in this sequence?
+Explain why.
 
 ```console
 $ emacs &
