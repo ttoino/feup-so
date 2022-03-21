@@ -1,8 +1,8 @@
-# FEUP-LTW
+# FEUP-SO
 
 Weekly exercises from the SO course unit at FEUP.
 
-Exercise descriptions provided in portuguese (adapted from the given PDFs).
+Exercise descriptions provided (adapted from the given PDFs).
 
 ## Unit info
 
