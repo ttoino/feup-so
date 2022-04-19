@@ -163,8 +163,8 @@ birch:92:83:1.6
 yew:65:63:4.3
 alder:12:5:9.6
 ^D
-$ cat trees.txt | cut -d ’:’ -f 1,4
-$ cat trees.txt | cut -d ’:’ -f 1,4 | sort
+$ cat trees.txt | cut -d ':' -f 1,4
+$ cat trees.txt | cut -d ':' -f 1,4 | sort
 ```
 
 ## 10.
@@ -184,7 +184,7 @@ One Ring to rule them all, One Ring to find them, -->
 One Ring to bring them all and in the darkness bind them -->
 In the Land of Mordor where the Shadows lie.
 ^D
-$ cat q1.txt | sed ’s/Ring/Sword/g’ > q2.txt
+$ cat q1.txt | sed 's/Ring/Sword/g' > q2.txt
 $ cat q2.txt | grep -v Mordor
 $ wc -l q2.txt
 ```
@@ -195,14 +195,14 @@ What are the results of the `diff` commands in the sequence below?
 
 ```console
 $ cat > f1.txt
-I don’t know half of you
+I don't know half of you
 half as well as I should like;
 and I like less than half of you
 half as well as you deserve
 ^D
-$ sed ’s/half/two\ thirds/g’ < f1.txt > f2.txt
+$ sed 's/half/two\ thirds/g' < f1.txt > f2.txt
 $ diff f1.txt f2.txt
-$ sed ’s/like/do\ not\ like/g’ < f1.txt > f2.txt
+$ sed 's/like/do\ not\ like/g' < f1.txt > f2.txt
 $ diff f1.txt f2.txt
 ```
 

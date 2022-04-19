@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
         close(fd[READ_END]);
         printf("Parent process with pid %d\n", getpid());
         printf("Messaging the child process (pid %d):\n", pid);
-        snprintf(line, LINESIZE, "Hello! I’m your parent pid %d!\n", getpid());
+        snprintf(line, LINESIZE, "Hello! I'm your parent pid %d!\n", getpid());
         if ((nbytes = write(fd[WRITE_END], line, strlen(line))) < 0) {
             fprintf(stderr, "Unable to write to pipe: %s\n", strerror(errno));
         }
@@ -336,15 +336,15 @@ static void handler3() { printf("received SIGHUP\n"); }
 int main(int argc, char* argv[]) {
     printf("My PID is %d\n", getpid());
     if (signal(SIGUSR1, handler1) == SIG_ERR) {
-        fprintf(stderr, "Can’t catch SIGUSR1: %s", strerror(errno));
+        fprintf(stderr, "Can't catch SIGUSR1: %s", strerror(errno));
         exit(EXIT_FAILURE);
     }
     if (signal(SIGUSR2, handler2) == SIG_ERR) {
-        fprintf(stderr, "Can’t catch SIGUSR2: %s", strerror(errno));
+        fprintf(stderr, "Can't catch SIGUSR2: %s", strerror(errno));
         exit(EXIT_FAILURE);
     }
     if (signal(SIGHUP, handler3) == SIG_ERR) {
-        fprintf(stderr, "Can’t catch SIGHUP: %s", strerror(errno));
+        fprintf(stderr, "Can't catch SIGHUP: %s", strerror(errno));
         exit(EXIT_FAILURE);
     }
     /* stick around ... */
@@ -389,11 +389,11 @@ int main(int argc, char* argv[]) {
     if ((pid = fork()) < 0)
         { /* fork error */}
     else if (pid > 0) {
-        /* parent’s code */
+        /* parent's code */
         kill(pid, SIGUSR2);
         pause();
     } else {
-        /* child’s code */
+        /* child's code */
         kill(getppid(), SIGUSR1);
         pause();
     }
@@ -458,7 +458,7 @@ void handler (int signum) {
 
 int main (int argc, char* argv[]) {
     if (signal(SIGHUP, handler) == SIG_ERR) {
-        fprintf(stderr, "Can’t catch SIGHUP: %s", strerror(errno));
+        fprintf(stderr, "Can't catch SIGHUP: %s", strerror(errno));
         exit(EXIT_FAILURE);
     }
 

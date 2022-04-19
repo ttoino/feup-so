@@ -167,7 +167,7 @@ int main(int argc, char* argv[]) {
     }
 
     if (lstat(argv[1], &info) == -1) {
-        fprintf(stderr, "fsize: Can’t stat %s\n", argv[1]);
+        fprintf(stderr, "fsize: Can't stat %s\n", argv[1]);
         return EXIT_FAILURE;
     }
 
@@ -220,7 +220,7 @@ int main (int argc, char** argv) {
     }
     q = opendir (argv[1]);
     if (q == NULL) {
-        fprintf (stderr, "%s: Cannot open directory ’%s’\n",
+        fprintf (stderr, "%s: Cannot open directory '%s'\n",
                  argv[0], argv[1]);
         return EXIT_FAILURE;
     }

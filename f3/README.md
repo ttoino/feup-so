@@ -87,7 +87,7 @@ $ ./naughty abcdefghij
 ```
 
 How do you explain the results?
-Make a drawing of the program’s stack to better visualize the problem.
+Make a drawing of the program's stack to better visualize the problem.
 How could you correct the program?
 
 ## 3.

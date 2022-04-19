@@ -6,7 +6,7 @@ Recall the definition of the complex number *z* ∈ ℂ as *x* + *yi*, where *x*
 The values *x* and *y* represent, respectively, the real and imaginary parts of *z*.
 
 The following C header file (a file with the extension `.h`) defines a new datatype called `complex` that can be used to implement a library of functions that operate on complex numbers.
-The list of such functions and their types (the library’s Application Programmer’s Interface or API) is also provided in this file (`complex.h`):
+The list of such functions and their types (the library's Application Programmer's Interface or API) is also provided in this file (`complex.h`):
 
 ```c
 /* definition of new type complex */
@@ -136,7 +136,7 @@ and then we compile the main program `use_complex.c` informing the compiler (act
 $ gcc -Wall use_complex.c -o use_complex -L. -lcomplex -lm
 ```
 
-Note also that C’s math library was also included `-lm`, as functions in it, such as `atan2` and `sqrt`, are used in the implementation of `complex.c`.
+Note also that C's math library was also included `-lm`, as functions in it, such as `atan2` and `sqrt`, are used in the implementation of `complex.c`.
 
 ## 2.
 
