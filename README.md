@@ -8,6 +8,7 @@ Exercise descriptions provided (adapted from the given PDFs).
 
 * **Name**: Sistemas Operativos (Operating Systems)
 * **Date**: Year 2, Semester 2, 2021/22
+* **See also**: [feup-so-proj](https://github.com/ttoino/feup-so-proj)
 * [**More info**](https://sigarra.up.pt/feup/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=484378)
 
 ## Disclaimer
